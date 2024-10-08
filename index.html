@@ -5,68 +5,148 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL@20..48,100..700,0..1"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL@20..48,100..700,0..1"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL@20..48,100..700,0..1"
+        rel="stylesheet">
+    <link rel="stylesheet" href="./index.css">
+    <script type="importmap">
+      {
+        "imports": {
+          "@material/web/": "https://esm.run/@material/web/"
+        }
+      }
+    </script>
+    <script type="module">
+        import '@material/web/all.js';
+        import { styles as typescaleStyles } from '@material/web/typography/md-typescale-styles.js';
+
+        document.adoptedStyleSheets.push(typescaleStyles.styleSheet);
+    </script>
 </head>
 
 <body>
+    <h1 class="md-typescale-display-medium">Hello Material!</h1>
+    <form>
+        <p class="md-typescale-body-medium">Check out these controls in a form!</p>
+        <md-checkbox></md-checkbox>
+        <div>
+            <md-radio name="group"></md-radio>
+            <md-radio name="group"></md-radio>
+            <md-radio name="group"></md-radio>
+        </div>
+        <md-outlined-text-field label="Favorite color" value="Purple"></md-outlined-text-field>
+        <md-outlined-button type="reset">Reset</md-outlined-button>
+        <md-filled-button type="button">Reset</md-filled-button>
+        <md-filled-tonal-button>
+            Send
+            <svg slot="icon" viewBox="0 0 48 48">
+                <path d="M6 40V8l38 16Zm3-4.65L36.2 24 9 12.5v8.4L21.1 24 9 27Zm0 0V12.5 27Z" />
+            </svg>
+        </md-filled-tonal-button>
 
-    <head>
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="./index.css">
-        <script type="importmap">
-          {
-            "imports": {
-              "@material/web/": "https://esm.run/@material/web/"
-            }
-          }
-        </script>
-        <script type="module">
-            import '@material/web/all.js';
-            import { styles as typescaleStyles } from '@material/web/typography/md-typescale-styles.js';
+        <md-text-button trailing-icon>
+            Open
+            <svg slot="icon" viewBox="0 0 48 48">
+                <path
+                    d="M9 42q-1.2 0-2.1-.9Q6 40.2 6 39V9q0-1.2.9-2.1Q7.8 6 9 6h13.95v3H9v30h30V25.05h3V39q0 1.2-.9 2.1-.9.9-2.1.9Zm10.1-10.95L17 28.9 36.9 9H25.95V6H42v16.05h-3v-10.9Z" />
+            </svg>
+        </md-text-button>
+    </form>
 
-            document.adoptedStyleSheets.push(typescaleStyles.styleSheet);
-        </script>
+    <!-- Note the position: relative style -->
+    <span style="position: relative">
+        <md-filled-button id="usage-submenu-anchor">
+            Menu with Submenus
+        </md-filled-button>
+        <!-- Note the has-overflow attribute -->
+        <md-menu has-overflow id="usage-submenu" anchor="usage-submenu-anchor">
+            <md-sub-menu>
+                <md-menu-item slot="item">
+                    <div slot="headline">Fruits with A</div>
+                    <!-- Arrow icons are helpful affordances -->
+                    <md-icon slot="end">arrow_right</md-icon>
+                </md-menu-item>
+                <!-- Submenu must be slotted into sub-menu's menu slot -->
+                <md-menu slot="menu">
+                    <md-menu-item>
+                        <div slot="headline">Apricot</div>
+                    </md-menu-item>
+                    <md-menu-item>
+                        <div slot="headline">Avocado</div>
+                    </md-menu-item>
 
-    </head>
+                    <!-- Nest as many as you want and control menu anchoring -->
+                    <md-sub-menu menu-corner="start-end" anchor-corner="start-start">
+                        <md-menu-item slot="item">
+                            <div slot="headline">Apples</div>
+                            <!-- Arrow icons are helpful affordances -->
+                            <md-icon slot="start">
+                                arrow_left
+                            </md-icon>
+                        </md-menu-item>
+                        <md-menu slot="menu">
+                            <md-menu-item>
+                                <div slot="headline">Fuji</div>
+                            </md-menu-item>
+                            <md-menu-item>
+                                <div slot="headline" style="white-space: nowrap;">Granny Smith</div>
+                            </md-menu-item>
+                            <md-menu-item>
+                                <div slot="headline" style="white-space: nowrap;">Red Delicious</div>
+                            </md-menu-item>
+                        </md-menu>
 
-    <body>
-        <h1 class="md-typescale-display-medium">Hello Material!</h1>
-        <form>
-            <p class="md-typescale-body-medium">Check out these controls in a form!</p>
-            <md-checkbox></md-checkbox>
-            <div>
-                <md-radio name="group"></md-radio>
-                <md-radio name="group"></md-radio>
-                <md-radio name="group"></md-radio>
-            </div>
-            <md-outlined-text-field label="Favorite color" value="Purple"></md-outlined-text-field>
-            <md-outlined-button type="reset">Reset</md-outlined-button>
-            <md-filled-button type="button">Reset</md-filled-button>
-            <md-filled-tonal-button>
-                Send
-                <svg slot="icon" viewBox="0 0 48 48">
-                    <path d="M6 40V8l38 16Zm3-4.65L36.2 24 9 12.5v8.4L21.1 24 9 27Zm0 0V12.5 27Z" />
-                </svg>
-            </md-filled-tonal-button>
+                    </md-sub-menu>
+                </md-menu>
+            </md-sub-menu>
 
-            <md-text-button trailing-icon>
-                Open
-                <svg slot="icon" viewBox="0 0 48 48">
-                    <path
-                        d="M9 42q-1.2 0-2.1-.9Q6 40.2 6 39V9q0-1.2.9-2.1Q7.8 6 9 6h13.95v3H9v30h30V25.05h3V39q0 1.2-.9 2.1-.9.9-2.1.9Zm10.1-10.95L17 28.9 36.9 9H25.95V6H42v16.05h-3v-10.9Z" />
-                </svg>
-            </md-text-button>
-        </form>
+            <md-menu-item>
+                <div slot="headline">Banana</div>
+            </md-menu-item>
+            <md-menu-item>
+                <div slot="headline">Cucumber</div>
+            </md-menu-item>
+        </md-menu>
+    </span>
 
 
-        <style>
-            form {
-                display: flex;
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 16px;
-            }
-        </style>
-    </body>
+    <h3>Outlined</h3>
+    <span class="outlined">
+        <md-icon>settings</md-icon>
+        <md-icon>check_box</md-icon>
+        <md-icon>house</md-icon>
+    </span>
+    <h3>Filled</h3>
+    <span class="filled">
+        <md-icon filled>settings</md-icon>
+        <md-icon filled>check_box</md-icon>
+        <md-icon filled>house</md-icon>
+    </span>
+    <h3>Rounded</h3>
+    <span class="rounded">
+        <md-icon>settings</md-icon>
+        <md-icon>check_box</md-icon>
+        <md-icon>house</md-icon>
+    </span>
+    <h3>Sharp</h3>
+    <span class="sharp">
+        <md-icon>settings</md-icon>
+        <md-icon>check_box</md-icon>
+        <md-icon>house</md-icon>
+    </span>
+
+    <script type="module">
+        const anchorEl = document.body.querySelector('#usage-submenu-anchor');
+        const menuEl = document.body.querySelector('#usage-submenu');
+
+        anchorEl.addEventListener('click', () => { menuEl.open = !menuEl.open; });
+    </script>
+
+
 </body>
 
 </html>
