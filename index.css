@@ -1,0 +1,34 @@
+:root {
+  /* color */
+   --md-sys-color-primary: #24a09a;
+  --md-sys-color-secondary-container: #24a09a;
+   --md-sys-color-on-secondary-container: #fff;
+  --md-sys-color-surface-container: #fff; 
+
+  /* Typeface(改變字型和字體粗細) */
+  --md-ref-typeface-brand: "Open Sans";
+  --md-ref-typeface-plain: "Open Sans";
+
+  /* Typography (字體大小、行高) */
+  --md-sys-typescale-body-medium-size: 1rem;
+  --md-sys-typescale-body-medium-line-height: 1.5rem;
+
+  /* Shape (圓角)  */
+  /* --md-sys-shape-corner-small: 4px;
+  --md-sys-shape-corner-medium: 6px;
+  --md-sys-shape-corner-large: 8px; */
+  --md-outlined-button-container-shape: 4px;
+  --md-filled-button-container-shape: 4px;
+  --md-filled-tonal-button-container-shape: 4px;
+  --md-text-button-container-shape: 4px;
+
+
+  --md-filled-tonal-button-container-shape: 0px;
+  --md-filled-tonal-button-label-text-font: system-ui;
+ 
+}
+
+md-filled-button.error {
+  --md-filled-button-container-color: var(--md-sys-color-error);
+  --md-filled-button-label-text-color: var(--md-sys-color-on-error);
+}
