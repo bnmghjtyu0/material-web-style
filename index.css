@@ -6,6 +6,10 @@ form {
   gap: 16px;
 }
 
+#hitarea {
+  background-color: #ccc;
+}
+
 
 :root {
   

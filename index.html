@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
     <title>Document</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL@20..48,100..700,0..1"
@@ -13,6 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL@20..48,100..700,0..1"
         rel="stylesheet">
     <link rel="stylesheet" href="./index.css">
+    <script src="https://hammerjs.github.io/dist/hammer.min.js"></script>
     <script type="importmap">
       {
         "imports": {
@@ -26,44 +27,19 @@
 
         document.adoptedStyleSheets.push(typescaleStyles.styleSheet);
     </script>
+
+
 </head>
 
 <body>
-    <h1 class="md-typescale-display-medium">Hello Material!</h1>
-    <form>
-        <p class="md-typescale-body-medium">Check out these controls in a form!</p>
-        <md-checkbox></md-checkbox>
-        <div>
-            <md-radio name="group"></md-radio>
-            <md-radio name="group"></md-radio>
-            <md-radio name="group"></md-radio>
-        </div>
-        <md-outlined-text-field label="Favorite color" value="Purple"></md-outlined-text-field>
-        <md-outlined-button type="reset">Reset</md-outlined-button>
-        <md-filled-button type="button">Reset</md-filled-button>
-        <md-filled-tonal-button>
-            Send
-            <svg slot="icon" viewBox="0 0 48 48">
-                <path d="M6 40V8l38 16Zm3-4.65L36.2 24 9 12.5v8.4L21.1 24 9 27Zm0 0V12.5 27Z" />
-            </svg>
-        </md-filled-tonal-button>
-
-        <md-text-button trailing-icon>
-            Open
-            <svg slot="icon" viewBox="0 0 48 48">
-                <path
-                    d="M9 42q-1.2 0-2.1-.9Q6 40.2 6 39V9q0-1.2.9-2.1Q7.8 6 9 6h13.95v3H9v30h30V25.05h3V39q0 1.2-.9 2.1-.9.9-2.1.9Zm10.1-10.95L17 28.9 36.9 9H25.95V6H42v16.05h-3v-10.9Z" />
-            </svg>
-        </md-text-button>
-    </form>
 
     <!-- Note the position: relative style -->
     <span style="position: relative">
-        <md-filled-button id="usage-submenu-anchor">
-            Menu with Submenus
-        </md-filled-button>
+        <div id="hitarea">
+            hitarea
+        </div>
         <!-- Note the has-overflow attribute -->
-        <md-menu has-overflow id="usage-submenu" anchor="usage-submenu-anchor">
+        <md-menu has-overflow id="usage-submenu" anchor="hitarea">
             <md-sub-menu>
                 <md-menu-item slot="item">
                     <div slot="headline">Fruits with A</div>
@@ -80,12 +56,12 @@
                     </md-menu-item>
 
                     <!-- Nest as many as you want and control menu anchoring -->
-                    <md-sub-menu menu-corner="start-end" anchor-corner="start-start">
+                    <md-sub-menu>
                         <md-menu-item slot="item">
                             <div slot="headline">Apples</div>
                             <!-- Arrow icons are helpful affordances -->
-                            <md-icon slot="start">
-                                arrow_left
+                            <md-icon slot="end">
+                                arrow_right
                             </md-icon>
                         </md-menu-item>
                         <md-menu slot="menu">
@@ -114,6 +90,35 @@
     </span>
 
 
+    <h1 class="md-typescale-display-medium">Hello Material!</h1>
+    <form>
+        <p class="md-typescale-body-medium">Check out these controls in a form!</p>
+        <md-checkbox></md-checkbox>
+        <div>
+            <md-radio name="group"></md-radio>
+            <md-radio name="group"></md-radio>
+            <md-radio name="group"></md-radio>
+        </div>
+        <md-outlined-text-field label="Favorite color" value="Purple"></md-outlined-text-field>
+        <md-outlined-button type="reset">Reset</md-outlined-button>
+        <md-filled-button type="button">Reset</md-filled-button>
+        <md-filled-tonal-button>
+            Send
+            <svg slot="icon" viewBox="0 0 48 48">
+                <path d="M6 40V8l38 16Zm3-4.65L36.2 24 9 12.5v8.4L21.1 24 9 27Zm0 0V12.5 27Z" />
+            </svg>
+        </md-filled-tonal-button>
+
+        <md-text-button trailing-icon>
+            Open
+            <svg slot="icon" viewBox="0 0 48 48">
+                <path
+                    d="M9 42q-1.2 0-2.1-.9Q6 40.2 6 39V9q0-1.2.9-2.1Q7.8 6 9 6h13.95v3H9v30h30V25.05h3V39q0 1.2-.9 2.1-.9.9-2.1.9Zm10.1-10.95L17 28.9 36.9 9H25.95V6H42v16.05h-3v-10.9Z" />
+            </svg>
+        </md-text-button>
+    </form>
+
+
     <h3>Outlined</h3>
     <span class="outlined">
         <md-icon>settings</md-icon>
@@ -140,10 +145,17 @@
     </span>
 
     <script type="module">
-        const anchorEl = document.body.querySelector('#usage-submenu-anchor');
+
         const menuEl = document.body.querySelector('#usage-submenu');
 
-        anchorEl.addEventListener('click', () => { menuEl.open = !menuEl.open; });
+        var hitarea = document.getElementById('hitarea');
+        var hammertime = new Hammer(hitarea);
+        hammertime.on("panleft panright tap press", function (ev) {
+            menuEl.open = !menuEl.open;
+            console.log(ev.srcEvent)
+            document.querySelector('md-menu').setAttribute('x-offset', ev.center.x )
+            document.querySelector('md-menu').setAttribute('y-offset', ev.center.y - ev.srcEvent.pageY)
+        });
     </script>
 
 
